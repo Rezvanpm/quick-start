@@ -1,12 +1,13 @@
 from restack_ai.function import function, log
 import requests
 from bs4 import BeautifulSoup
+from security import safe_requests
 
 @function.defn()
 async def crawl_website(url):
     try:
         # Send a GET request to the URL
-        response = requests.get(url)
+        response = safe_requests.get(url)
         response.raise_for_status()  # Raise an error for bad responses
 
         # Parse the content with BeautifulSoup
