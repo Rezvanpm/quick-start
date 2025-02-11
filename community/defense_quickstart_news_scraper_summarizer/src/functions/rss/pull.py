@@ -1,8 +1,8 @@
 import requests
-import xml.etree.ElementTree as ET
 from restack_ai.function import function, log
 
 from .schema import RssInput
+import defusedxml.ElementTree
 
 @function.defn()
 async def rss_pull(input:RssInput):
@@ -12,7 +12,7 @@ async def rss_pull(input:RssInput):
         response.raise_for_status()  # Raise an error for bad responses
 
         # Parse the RSS feed
-        root = ET.fromstring(response.content)
+        root = defusedxml.ElementTree.fromstring(response.content)
         items = []
         for item in root.findall(".//item"):
             title = item.find("title").text
