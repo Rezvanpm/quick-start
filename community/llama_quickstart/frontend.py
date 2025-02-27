@@ -24,8 +24,8 @@ if st.button("Search HN"):
                 # Make POST request to FastAPI backend
                 response = requests.post(
                     "http://localhost:8000/api/schedule",
-                    json={"query": query, "count": count}
-                )
+                    json={"query": query, "count": count}, 
+                timeout=60)
                 
                 if response.status_code == 200:
                     st.success("Response received!")

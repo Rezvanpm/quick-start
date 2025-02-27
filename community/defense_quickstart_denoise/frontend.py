@@ -33,8 +33,8 @@ if st.button("Process Audio"):
             with st.spinner('Processing audio...'):
                 response = requests.post(
                     "http://localhost:8000/api/process_audio",
-                    json={"file_data": file_data_list}
-                )
+                    json={"file_data": file_data_list}, 
+                timeout=60)
 
                 if response.status_code == 200:
                     st.success("Processing audio was successful!")
