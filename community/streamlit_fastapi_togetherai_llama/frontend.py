@@ -21,8 +21,8 @@ if st.button("Generate Response"):
             # Make POST request to FastAPI backend
             response = requests.post(
                 "http://localhost:8000/api/schedule",
-                json={"prompt": user_prompt}
-            )
+                json={"prompt": user_prompt}, 
+            timeout=60)
             
             if response.status_code == 200:
                 st.success("Response received!")

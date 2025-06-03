@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 async def crawl_website(url):
     try:
         # Send a GET request to the URL
-        response = requests.get(url)
+        response = requests.get(url, timeout=60)
         response.raise_for_status()  # Raise an error for bad responses
 
         # Parse the content with BeautifulSoup

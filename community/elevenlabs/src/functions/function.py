@@ -56,7 +56,7 @@ async def text_to_speech(input: dict) -> dict:
             data["output_format"] = "ulaw_8000"
 
         # Send the request
-        response = requests.post(url, json=data, headers=headers, stream=True)
+        response = requests.post(url, json=data, headers=headers, stream=True, timeout=60)
         response.raise_for_status()
 
         # Collect response chunks and convert to base64
@@ -114,7 +114,7 @@ async def isolate_audio(input: dict) -> dict:
 
             # Make the POST request to the ElevenLabs API
             log.info("Sending request to ElevenLabs API...")
-            response = requests.post(url, headers=headers, files=files)
+            response = requests.post(url, headers=headers, files=files, timeout=60)
 
         # Check response status
         if response.status_code != 200:

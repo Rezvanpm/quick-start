@@ -21,7 +21,7 @@ async def seed_database() -> str:
 
         fname = "jeopardy_tiny_with_vectors_all-OpenAI-ada-002.json"  # This file includes pre-generated vectors
         url = f"https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/{fname}"
-        resp = requests.get(url)
+        resp = requests.get(url, timeout=60)
         data = json.loads(resp.text)  # Load data
 
         question_objs = list()
