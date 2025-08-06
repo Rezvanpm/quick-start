@@ -1,14 +1,14 @@
-import requests
 import xml.etree.ElementTree as ET
 from restack_ai.function import function, log
 
 from .schema import RssInput
+from security import safe_requests
 
 @function.defn()
 async def rss_pull(input:RssInput):
     try:
         # Fetch the RSS feed
-        response = requests.get(input.url)
+        response = safe_requests.get(input.url)
         response.raise_for_status()  # Raise an error for bad responses
 
         # Parse the RSS feed
